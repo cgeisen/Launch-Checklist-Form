@@ -8,8 +8,33 @@
     <body>
         <h1>Launch Checklist Form</h1>
         <div id="missionTarget">
-            <!-- Fetch some planetary data -->
+
+     <!-- Fetch some planetary data -->
+        
+        <script>
+            window.addEventListener("load", function() {
+               fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+                  response.json().then( function(json) {
+                     const div = document.getElementById("missionTarget");
+                     let random = (Math.floor(Math.random()*6));
+                      div.innerHTML = `
+                     <h2>Mission Destination</h2>
+                     <ol>
+                        <li>Name: ${json[random].name}</li>
+                        <li>Diameter: ${json[random].diameter}</li>
+                        <li>Star: ${json[random].star}</li>
+                        <li>Distance from Earth: ${json[random].distance}</li>
+                        <li>Number of Moons: ${json[random].moons}</li>
+                    </ol>
+                    <img src="${json[random].image}">                       
+                     `;
+                  });
+               });
+            });
+         </script>               
+
         </div> 
+        
         <div id="launchForm">
             <form>
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
@@ -26,6 +51,7 @@
                 </div>
                 <button id="formSubmit">Submit</button>
             </form>
+
         </div>
         <div id="launchStatusCheck">
             <h2 id="launchStatus">Awaiting Information Before Launch</h2>
