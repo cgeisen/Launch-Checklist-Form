@@ -32,6 +32,8 @@ let form = document.querySelector("form");
       let copilotInput = document.querySelector("input[name=copilotName]");
       let fuelInput = document.querySelector("input[name=fuelLevel]");
       let cargoInput = document.querySelector("input[name=cargoMass]");
+
+      
       event.preventDefault();
       
       if (pilotInput.value === "" || copilotInput.value === "" || fuelInput.value === "" || cargoInput.value === ""){
@@ -40,14 +42,7 @@ let form = document.querySelector("form");
          alert("Pilot and Copilot Names should be only alphabetical characters");         
       } else if (isNaN(fuelInput.value) || isNaN(cargoInput.value)){
          alert("Fuel Level and Cargo Mass should be numeric characters");
-      }
-
-      pilotStatus.innerHTML = `Pilot ${pilotInput.value} Ready`;
-      copilotStatus.innerHTML = `Copilot ${copilotInput.value} Ready`;
-      fuelStatus.innerHTML = "Fuel level high enough for launch";
-      cargoStatus.innerHTML = "Cargo mass low enough for launch";
-
-      if (cargoInput.value > 10000){
+      } else if (cargoInput.value > 10000){
          cargoStatus.innerHTML = "There is too much mass for the shuttle to take off";
          faultyItems.style.visibility = "visible";
          launchStatus.innerHTML = "Shuttle not ready for launch";
@@ -60,6 +55,10 @@ let form = document.querySelector("form");
       } else {
          launchStatus.innerHTML = "Shuttle is ready for launch";
          launchStatus.style.color = "green";
+         pilotStatus.innerHTML = `Pilot ${pilotInput.value} Ready`;
+         copilotStatus.innerHTML = `Copilot ${copilotInput.value} Ready`;
+         fuelStatus.innerHTML = "Fuel level high enough for launch";
+         cargoStatus.innerHTML = "Cargo mass low enough for launch";
       }
    });
 
